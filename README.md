@@ -9,7 +9,7 @@
 ## Tecnologias Utilizadas
 
 
-## COmo testar
+## Como testar
 
 
 ## Autor
