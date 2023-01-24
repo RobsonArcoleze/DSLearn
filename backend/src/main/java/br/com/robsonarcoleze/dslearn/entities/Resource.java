@@ -1,17 +1,15 @@
 package br.com.robsonarcoleze.dslearn.entities;
 
 import java.io.Serializable;
-import java.time.Instant;
-import java.util.ArrayList;
-import java.util.List;
 
+import br.com.robsonarcoleze.dslearn.entities.enums.ResourceType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -19,24 +17,26 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @EqualsAndHashCode(of = "id")
 @Entity
-@Table(name = "tb_offer")
-public class Offer implements Serializable{
+@Table(name = "tb_resource")
+public class Resource implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Getter @Setter private Long id;
-	@Getter @Setter private String edition;
-	@Getter @Setter private Instant startMoment;
-	@Getter @Setter private Instant endMoment;
+	@Getter @Setter private String title;
+	
+	@Column(columnDefinition = "TEXT")
+	@Getter @Setter private String description;
+	@Getter @Setter private Integer position;
+	@Getter @Setter private String imgUri;
+	@Getter @Setter private ResourceType type;
 	
 	@ManyToOne
-	@JoinColumn(name = "course_id")
-	@Getter @Setter private Course course;
-	
-	@OneToMany(mappedBy = "offer")
-	@Getter private List<Resource> resources = new ArrayList<>();
+	@JoinColumn(columnDefinition = "offer_id")
+	@Getter @Setter private Offer offer;
+
 }
