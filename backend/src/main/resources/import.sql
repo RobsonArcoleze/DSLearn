@@ -13,5 +13,7 @@ INSERT INTO tb_user_role (user_id, role_id) VALUES (3, 1);
 INSERT INTO tb_user_role (user_id, role_id) VALUES (3, 2);
 INSERT INTO tb_user_role (user_id, role_id) VALUES (3, 3);
 
+INSERT INTO tb_course (name, img_Uri, img_Gray_Uri) VALUES ('Bootcamp Html', 'https://www.publicdomainpictures.net/pictures/290000/nahled/training-course.jpg', 'https://www.lookandlearn.com/history-images/preview/YW/YW005/YW005469M_Nervous-system-inCourse-of-Lectures-on-the-physiology.jpg');
+
 
 

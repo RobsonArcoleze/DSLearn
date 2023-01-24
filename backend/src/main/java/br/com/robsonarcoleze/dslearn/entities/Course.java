@@ -13,17 +13,19 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
 @Entity
-@Table(name = "tb_role")
-public class Role implements Serializable{
+@Table(name = "tb_course")
+public class Course implements Serializable{
 	private static final long serialVersionUID = 1L;
+	
 	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Getter @Setter private Long id;
-	
-	@Getter @Setter private String authority;
-	
+	@Getter @Setter private String name;
+	@Getter @Setter private String imgUri;
+	@Getter @Setter private String imgGrayUri;
 }
