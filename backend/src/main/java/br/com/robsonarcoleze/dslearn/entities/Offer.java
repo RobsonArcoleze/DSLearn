@@ -14,14 +14,15 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 @NoArgsConstructor
-@AllArgsConstructor
+@RequiredArgsConstructor
 @EqualsAndHashCode(of = "id")
 @Entity
 @Table(name = "tb_offer")
@@ -29,18 +30,18 @@ public class Offer implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Getter @Setter private Long id;
-	@Getter @Setter private String edition;
+	@Getter @Setter @NonNull private Long id;
+	@Getter @Setter @NonNull private String edition;
 	
 	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
-	@Getter @Setter private Instant startMoment;
+	@Getter @Setter @NonNull private Instant startMoment;
 	
 	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
-	@Getter @Setter private Instant endMoment;
+	@Getter @Setter @NonNull private Instant endMoment;
 	
 	@ManyToOne
 	@JoinColumn(name = "course_id")
-	@Getter @Setter private Course course;
+	@Getter @Setter @NonNull private Course course;
 	
 	@OneToMany(mappedBy = "offer")
 	@Getter private List<Resource> resources = new ArrayList<>();

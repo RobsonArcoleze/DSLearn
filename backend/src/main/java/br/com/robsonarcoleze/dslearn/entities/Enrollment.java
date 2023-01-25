@@ -40,6 +40,8 @@ public class Enrollment implements Serializable{
 		this.available = available;
 		this.onlyUpdate = onlyUpdate;
 	}
+	
+	
 
 	public User getStudent() {
 		return id.getUser();
