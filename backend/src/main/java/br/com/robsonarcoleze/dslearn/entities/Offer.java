@@ -5,6 +5,7 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -30,7 +31,11 @@ public class Offer implements Serializable{
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Getter @Setter private Long id;
 	@Getter @Setter private String edition;
+	
+	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
 	@Getter @Setter private Instant startMoment;
+	
+	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
 	@Getter @Setter private Instant endMoment;
 	
 	@ManyToOne

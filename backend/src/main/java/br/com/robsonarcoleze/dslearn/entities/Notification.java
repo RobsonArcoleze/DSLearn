@@ -30,6 +30,8 @@ public class Notification implements Serializable{
 	
 	@Column(columnDefinition = "TEXT")
 	@Getter @Setter private String text;
+	
+	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
 	@Getter @Setter private Instant moment;
 	@Getter @Setter private Boolean read = false;
 	@Getter @Setter private String route;
