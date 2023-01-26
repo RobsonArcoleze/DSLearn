@@ -2,7 +2,9 @@ package br.com.robsonarcoleze.dslearn.entities;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import br.com.robsonarcoleze.dslearn.entities.pk.EnrollmentPK;
@@ -10,6 +12,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -35,6 +38,9 @@ public class Enrollment implements Serializable{
 	
 	@ManyToMany(mappedBy = "enrollmentsDone")
 	@Getter private Set<Lesson> lessonsDone = new HashSet<>();
+	
+	@OneToMany(mappedBy = "enrollment")
+	@Getter private List<Deliver> deliveries = new ArrayList<>();
 	
 	
 	public Enrollment(User user, Offer offer, Instant enrollMoment, Instant refundMoment, boolean available,

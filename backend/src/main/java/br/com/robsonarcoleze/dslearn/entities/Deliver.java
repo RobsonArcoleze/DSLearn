@@ -1,18 +1,16 @@
 package br.com.robsonarcoleze.dslearn.entities;
 
-import java.io.Serializable;
 import java.time.Instant;
-import java.util.ArrayList;
-import java.util.List;
 
+import br.com.robsonarcoleze.dslearn.entities.enums.DeliverStatus;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinColumns;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -21,31 +19,33 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
-@NoArgsConstructor
 @RequiredArgsConstructor
+@NoArgsConstructor
 @EqualsAndHashCode(of = "id")
 @Entity
-@Table(name = "tb_offer")
-public class Offer implements Serializable{
-	private static final long serialVersionUID = 1L;
+@Table(name = "tb_deliver")
+public class Deliver {
 	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Getter @Setter @NonNull private Long id;
-	@Getter @Setter @NonNull private String edition;
+	@Getter @Setter @NonNull private String uri;
 	
 	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
-	@Getter @Setter @NonNull private Instant startMoment;
+	@Getter @Setter @NonNull private Instant moment;
+	@Getter @Setter @NonNull private DeliverStatus status;
 	
-	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
-	@Getter @Setter @NonNull private Instant endMoment;
+	@Column(columnDefinition = "TEXT")
+	@Getter @Setter @NonNull private String feedback;
+	@Getter @Setter @NonNull private Integer correctCount;
 	
 	@ManyToOne
-	@JoinColumn(name = "course_id")
-	@Getter @Setter @NonNull private Course course;
+	@JoinColumn(columnDefinition = "lesson_id")
+	@Getter @Setter @NonNull private Lesson lesson;
 	
-	@OneToMany(mappedBy = "offer")
-	@Getter private List<Resource> resources = new ArrayList<>();
-	
-	@OneToMany(mappedBy = "offer")
-	@Getter private List<Topic> topics = new ArrayList<>();
+	@ManyToOne
+	@JoinColumns({
+		@JoinColumn(name = "offer_id"),
+		@JoinColumn(name = "user_id")
+	})
+	@Getter @Setter @NonNull private Enrollment enrollment;
 }
