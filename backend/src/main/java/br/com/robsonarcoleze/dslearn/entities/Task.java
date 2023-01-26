@@ -17,7 +17,7 @@ public class Task extends Lesson {
 	private static final long serialVersionUID = 1L;
 
 	@Column(columnDefinition = "TEXT")
-	@Getter @Setter private String Description;
+	@Getter @Setter private String description;
 	@Getter @Setter private Integer questionCount; 
 	@Getter @Setter private Integer approvalCount;
 	@Getter @Setter private Double weight;
@@ -28,7 +28,7 @@ public class Task extends Lesson {
 	public Task(@NonNull Long id, @NonNull String title, @NonNull Integer position, @NonNull Section section,
 			String description, Integer questionCount, Integer approvalCount, Double weight, Instant dueDate) {
 		super(id, title, position, section);
-		Description = description;
+		this.description = description;
 		this.questionCount = questionCount;
 		this.approvalCount = approvalCount;
 		this.weight = weight;
