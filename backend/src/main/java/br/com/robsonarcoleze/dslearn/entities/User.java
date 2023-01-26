@@ -45,4 +45,10 @@ public class User implements Serializable{
 	
 	@OneToMany(mappedBy = "user")
 	@Getter private List<Notification> notifications = new ArrayList<>();
+	
+	@OneToMany(mappedBy = "author")
+	@Getter private List<Topic> topics = new ArrayList<>();
+	
+	@ManyToMany(mappedBy = "likes")
+	@Getter private Set<Topic> likes = new HashSet<>();
 }
