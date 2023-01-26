@@ -1,5 +1,6 @@
 package br.com.robsonarcoleze.dslearn.entities;
 
+import java.io.Serializable;
 import java.time.Instant;
 
 import br.com.robsonarcoleze.dslearn.entities.enums.DeliverStatus;
@@ -24,7 +25,8 @@ import lombok.Setter;
 @EqualsAndHashCode(of = "id")
 @Entity
 @Table(name = "tb_deliver")
-public class Deliver {
+public class Deliver implements Serializable{
+	private static final long serialVersionUID = 1L;
 	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Getter @Setter @NonNull private Long id;

@@ -1,20 +1,19 @@
 package br.com.robsonarcoleze.dslearn.entities;
 
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.time.Instant;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -27,24 +26,32 @@ import lombok.Setter;
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
 @Entity
-@Table(name = "tb_user")
-public class User implements Serializable{
+@Table(name = "tb_reply")
+public class Reply implements Serializable{
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Getter @Setter @NonNull private Long id;
-	@Getter @Setter @NonNull private String name;
-	@Getter @Setter @NonNull private String email;
-	@Getter @Setter @NonNull private String password;
 	
-	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "tb_user_role",
-	joinColumns = @JoinColumn(name = "user_id"),
-	inverseJoinColumns = @JoinColumn(name = "role_id"))
-	@Getter private Set<Role> roles = new HashSet<>();
+	@Column(columnDefinition = "TEXT")
+	@Getter @Setter @NonNull private String body;
 	
-	@OneToMany(mappedBy = "user")
-	@Getter private List<Notification> notifications = new ArrayList<>();
+	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
+	@Getter @Setter @NonNull private Instant moment;
+	
+	@ManyToOne
+	@JoinColumn(name = "topic_id")
+	@Getter @Setter @NonNull private Topic topic;
+	
+	@ManyToOne
+	@JoinColumn(name = "author_id")
+	@Getter @Setter @NonNull private User author;
+	
+	@ManyToMany
+	@JoinTable(name = "tb_reply_likes",
+	joinColumns = @JoinColumn(name = "reply_id"),
+	inverseJoinColumns = @JoinColumn(name = "user_id"))
+	@Getter private Set<User> likes = new HashSet<>();
 	
 	
 }

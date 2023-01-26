@@ -1,7 +1,10 @@
 package br.com.robsonarcoleze.dslearn.entities;
 
+import java.io.Serializable;
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import jakarta.persistence.Column;
@@ -13,6 +16,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -26,7 +30,8 @@ import lombok.Setter;
 @EqualsAndHashCode(of = "id")
 @Entity
 @Table(name = "tb_topic")
-public class Topic {
+public class Topic implements Serializable{
+	private static final long serialVersionUID = 1L;
 
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Getter @Setter @NonNull private Long id;
@@ -56,5 +61,12 @@ public class Topic {
 	joinColumns = @JoinColumn(name = "topic_id"),
 	inverseJoinColumns = @JoinColumn(name = "user_id"))
 	@Getter private Set<User> likes = new HashSet<>();
+	
+	@ManyToOne
+	@JoinColumn(name = "reply_id")
+	@Getter @Setter @NonNull private Reply answer;
+	
+	@OneToMany(mappedBy = "topic")
+	@Getter private List<Reply> replies = new ArrayList<>();
 	
 }

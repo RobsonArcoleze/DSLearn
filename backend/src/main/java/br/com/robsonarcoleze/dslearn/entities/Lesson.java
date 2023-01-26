@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Set;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -44,7 +43,7 @@ public abstract class Lesson implements Serializable{
 	@JoinColumn(name = "section_id")
 	@Getter @Setter @NonNull private Section section;
 	
-	@ManyToMany(fetch = FetchType.EAGER)
+	@ManyToMany
 	@JoinTable(name = "tb_lessons_done",
 	joinColumns = @JoinColumn(name = "lesson_id"),
 	inverseJoinColumns = {
@@ -57,6 +56,5 @@ public abstract class Lesson implements Serializable{
 	@OneToMany(mappedBy = "lesson")
 	@Getter private List<Deliver> deliveries = new ArrayList<>();
 	
-	@OneToMany(mappedBy = "lesson")
-	@Getter private List<Topic> topics = new ArrayList<>();
+	
 }
