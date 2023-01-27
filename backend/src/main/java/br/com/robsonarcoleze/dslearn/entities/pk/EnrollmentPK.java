@@ -2,11 +2,12 @@ package br.com.robsonarcoleze.dslearn.entities.pk;
 
 import java.io.Serializable;
 
+import javax.persistence.Embeddable;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
 import br.com.robsonarcoleze.dslearn.entities.Offer;
 import br.com.robsonarcoleze.dslearn.entities.User;
-import jakarta.persistence.Embeddable;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
