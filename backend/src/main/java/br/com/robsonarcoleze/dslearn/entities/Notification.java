@@ -34,11 +34,11 @@ public class Notification implements Serializable{
 	
 	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
 	@Getter @Setter private Instant moment;
-	@Getter @Setter private Boolean read = false;
+	@Getter @Setter private boolean read;
 	@Getter @Setter private String route;
 	
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	@Getter @Setter private User user;
-	
+
 }
