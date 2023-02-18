@@ -20,6 +20,7 @@ OBS: Projeto ainda está em desenvolvimento!
 ## Back end
 - Java
 - Spring Boot
+- Spring security
 - JPA / Hibernate
 - Maven
 - OAuth2
