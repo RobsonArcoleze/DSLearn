@@ -25,6 +25,7 @@ OBS: Projeto ainda está em desenvolvimento!
 - Maven
 - OAuth2
 - JWT
+- H2 Database
 - PostgreSQL
 - Junit
 - Mockito
