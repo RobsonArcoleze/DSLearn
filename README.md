@@ -15,6 +15,9 @@ OBS: Projeto ainda está em desenvolvimento!
 
 **Frontend em construção!**
 
+## Modelo conceitual
+![Modelo Conceitual](https://github.com/RobsonArcoleze/DSLearn/blob/main/img/modelo-conceitual-com-forum.png)
+
 
 # Tecnologias utilizadas
 ## Back end
